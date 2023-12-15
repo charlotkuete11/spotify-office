@@ -1,0 +1,91 @@
+.header{
+  width: 99%;
+  margin:auto;
+  background-color: rgba(0, 0, 0, .9);
+  margin-bottom: 8px;
+  color: white;
+  display:flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .searchContainer{
+  /* width: 60%; */
+  /* padding-left: 5%; */
+  display: flex;
+  margin-left: 20px;
+}
+
+.searchContainer input{
+  width:70%;
+  padding: 8px 15px;
+  border: none;
+  box-shadow: 0 0 1px white;
+  border-radius:20px 0 0 20px;
+  background: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.searchContainer input:hover, .searchContainer input:focus{
+  border: 1px solid white;
+}
+
+.searchContainer button{
+  background: white;
+  border:none;
+  color:black;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in-out;
+}
+
+.searchContainer button:hover{
+  background: rgba(65, 105, 225, 1);
+  color:white;
+}
+
+.searchContainer button:active{
+  transform: translateY(1px);
+}
+
+.header .fakeUser{
+  display:flex;
+  font-size: 16px;
+  justify-content: space-between;
+  padding:6px;
+  margin-right:15px;
+}
+
+.fakeUser .user{
+  margin-right:2vw;
+}
+
+.fakeUser .user, .fakeUser .language{
+  display:flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.fakeUser .icon{
+  background: white;
+  color: black;
+  padding:5px 7px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.fakeUser .language{
+  box-shadow: 0 0 1px white;
+  padding: 5px 8px;
+  border-radius: 20px;
+  border:1px solid transparent;
+  transition: border .3s ease-in-out;
+}
+
+.fakeUser .language:hover{
+  border: 1px solid white;
+}

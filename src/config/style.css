@@ -1,0 +1,18 @@
+.SiteContainer .parent{
+  background: rgb(179, 181, 182);
+  display:flex;
+  align-items: stretch;
+  height:100vh;
+}
+
+.SiteContainer .parent .sidebar{
+  flex-grow: 1;
+  position:relative;
+}
+
+.SiteContainer .parent .child{
+  flex-grow: 30;
+  overflow:auto;
+  padding-bottom:8px;
+}
+
