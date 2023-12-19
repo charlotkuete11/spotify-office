@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faGlobe, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
+import {faGlobe, faUser} from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function Header() {
@@ -12,9 +12,9 @@ function Header() {
             className="search"
             placeholder="Votre recherche !"
           /> */}
-        <button type="button">
+        {/* <button type="button">
           <FontAwesomeIcon icon={faSearch} />
-        </button>
+        </button> */}
       </div>
       <div className="fakeUser">
         <div className="user">

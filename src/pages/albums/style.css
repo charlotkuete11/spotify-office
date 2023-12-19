@@ -1,16 +1,3 @@
-.pageContainer{
-  background:#000;
-  overflow: auto;
-  width:99%;
-  margin:auto;
-  color: white;
-  padding:15px;
-}
-p{
-  margin: 0;
-  padding:0;
-}
-
 .miniHeader{
   display:flex;
   align-items:center;
