@@ -10,18 +10,21 @@ import {
   faTachometerAlt,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import {useSelector} from 'react-redux';
 
 function SideBar() {
+  const navRef = useSelector(state => state.navigateRef);
+
   const handleNavigation = path => {
-    console.log(path);
-    if (navigateRef) {
-      console.log('enter');
-      navigateRef(path);
+    // console.log(path);
+    if (navRef != null) {
+      // console.log('enter');
+      navRef(path);
     }
   };
   return (
     <div className="sidebar">
-      <div class="logo">
+      <div className="logo">
         <img src={logo} alt="spotify" />
       </div>
 
@@ -48,7 +51,7 @@ function SideBar() {
         </li>
       </ul>
 
-      <div class="copyright">@Copyright (c) 2024 all rights reserved</div>
+      <div className="copyright">@Copyright (c) 2024 all rights reserved</div>
     </div>
   );
 }

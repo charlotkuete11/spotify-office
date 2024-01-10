@@ -6,8 +6,10 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import Block from '../../components/Block';
 import {useState} from 'react';
 import Modal from '../../components/modal';
+import {useNavigate} from 'react-router';
 
 function Albums() {
+  const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
     titre: '',
     artiste: '',
@@ -30,6 +32,32 @@ function Albums() {
     setModalOpen(false);
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    // Créer un nouvel objet FormData
+    const formData = new FormData();
+
+    // Ajouter le fichier à FormData
+    formData.append('data', formValue);
+
+    // Envoyer formData au serveur ou effectuer d'autres opérations
+    // fetch('/api/upload', {
+    //   method: 'POST',
+    //   body: formData,
+    // });
+
+    // Réinitialiser le champ de fichier après l'envoi
+    setFormValue({
+      titre: '',
+      artiste: '',
+      dateSortie: '',
+    });
+  };
+
+  const handleNavigation = () => {
+    navigate('albums/1');
+  };
   return (
     <div className="pageContainer">
       <div className="container">
@@ -50,19 +78,19 @@ function Albums() {
         </div>
 
         <div className="body">
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
-          <Block type="album" />
+          <Block type="album" id="1" />
+          <Block type="album" id="2" />
+          <Block type="album" id="3" />
+          <Block type="album" id="4" />
+          <Block type="album" id="5" />
+          <Block type="album" id="6" />
+          <Block type="album" id="7" />
+          <Block type="album" id="8" />
+          <Block type="album" id="9" />
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} title="Ajouter un album">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="formController">
             <input
               type="text"
@@ -108,5 +136,18 @@ function Albums() {
     </div>
   );
 }
+
+// function handleFile(file) {
+//   const allowedExtensions = ['png', 'jpg', 'jpeg'];
+//   const fileExtension = file.name.split('.').pop().toLowerCase();
+
+//   if (!allowedExtensions.includes(fileExtension)) {
+//     // Gérer le cas où l'extension n'est pas autorisée
+//     alert(
+//       'Veuillez sélectionner un fichier avec une extension PNG, JPG ou JPEG.',
+//     );
+//     return;
+//   }
+// }
 
 export default Albums;

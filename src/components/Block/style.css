@@ -40,6 +40,33 @@ img{
   background: rgba(0,0,0,.8);
 }
 
+.desc .audioControl{
+  display:none;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  padding:10px;
+}
+
+.desc .audioControl .icon{
+  color:rgba(65, 105, 225, .8);
+  background:white;
+  border-radius:25px;
+  float:right;
+  cursor:pointer;
+  width: 2.4vw;
+  height:2.4vw;
+}
+
+.desc .audioControl .icon:hover{
+  color: royalblue;
+}
+
+.desc:hover .audioControl{
+  display: block;
+}
+
 .name{
   width:100%;
   text-align: center;

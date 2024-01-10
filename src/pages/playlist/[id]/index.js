@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../globalPageStyle.css';
+// import {useParams} from 'react-router';
+import playlist from '../../../assets/playlist.jpeg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAdd, faPause, faPlay} from '@fortawesome/free-solid-svg-icons';
-import image from '../../../assets/album.jpg';
-import Modal from '../../../components/modal';
 import {useState} from 'react';
+import Modal from '../../../components/modal';
 
-function Album() {
+function PlaylistDetails() {
+  // const {id} = useParams();
   const [file, setFile] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -65,16 +67,12 @@ function Album() {
     <div className="pageContainer">
       <div className="container">
         <div className="first">
-          <img src={image} alt="" />
+          <img src={playlist} alt="" />
           <div className="name">
             <p>Subliminal</p>
           </div>
         </div>
         <div className="second">
-          <div className="header">
-            <p>Maitre Gims</p>
-            <p>Date de sortie: 2019</p>
-          </div>
           <div className="body">
             <button className="addBlock" onClick={openModal}>
               <FontAwesomeIcon icon={faAdd} className="icon" />
@@ -199,6 +197,7 @@ function Album() {
           </div>
         </div>
       </div>
+
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -221,4 +220,4 @@ function Album() {
   );
 }
 
-export default Album;
+export default PlaylistDetails;

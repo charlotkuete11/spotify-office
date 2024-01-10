@@ -6,6 +6,8 @@ import PlayLists from '../pages/playlist';
 import Albums from '../pages/albums';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import Album from '../pages/albums/[id]';
+import ArtisteDetails from '../pages/artistes/[id]';
+import PlaylistDetails from '../pages/playlist/[id]';
 // import {Provider} from 'react-redux';
 // import store from '../services/redux/store/store';
 
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
   {
     path: 'albums/:id',
     element: <Album />,
+  },
+  {
+    path: 'artistes/:id',
+    element: <ArtisteDetails />,
+  },
+  {
+    path: 'playlists/:id',
+    element: <PlaylistDetails />,
   },
 ]);
 

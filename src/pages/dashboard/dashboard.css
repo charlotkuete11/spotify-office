@@ -1,0 +1,72 @@
+.headerText{
+  font-size: 2.5vw;
+  letter-spacing: 1px;
+  margin-bottom: 1em;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+.listened{
+  display:flex;
+  width:85%;
+  margin:1em auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listened .mostListened{
+  color:black;
+}
+
+.mostListened table{
+  background:white;
+  border-collapse: collapse;
+  font-size: 1.1vw;
+}
+
+.mostListened th, .mostListened td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.mostListened th {
+  background-color: #f2f2f2;
+}
+
+.innerBlock {
+  border-radius: 10px;
+  box-shadow: 0 0 2px white;
+  padding:1.5vw;
+  position: relative;
+  display: flex;
+  margin-bottom:.7em;
+}
+
+.innerBlock .icon{
+  background: transparent;
+  color:royalblue;
+  margin-right:1.5em;
+  width:5vw;
+  height:5vw;
+}
+.innerBlock div{
+  text-align: right;
+  font-size: 1.2vw;
+}
+
+.innerBlock div p:nth-child(1){
+  margin-bottom: .7em;
+}
+
+.innerBlock div p:nth-child(2){
+  font-weight: bold;
+}
+
+.musics .innerBlock{
+  width:22vw;
+  margin:auto;
+  margin-top: 2.5em;
+  margin-bottom: 2em;
+}
+

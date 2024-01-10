@@ -2,6 +2,7 @@
 
 const initialState = {
   isLoaded: false,
+  navigateRef: null,
 };
 
 const loadedReducer = (state = initialState, action) => {
@@ -11,6 +12,13 @@ const loadedReducer = (state = initialState, action) => {
         ...state,
         isLoaded: action.payload,
       };
+      break;
+    case 'NAVIGATEREF':
+      return {
+        ...state,
+        navigateRef: action.payload,
+      };
+      break;
     default:
       return state;
   }

@@ -3,13 +3,21 @@ import './style.css';
 import image from '../../assets/album.jpg';
 import playlist from '../../assets/playlist.jpeg';
 import musique from '../../assets/musique.jpeg';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from 'react-router';
 
-function Block({type}) {
+function Block({type, id}) {
+  const navigate = useNavigate();
   return type === 'album' ? (
     <div className="blockContainer">
       <div className="block">
         <img src={image} alt="" />
-        <div className="desc">
+        <div
+          className="desc"
+          onClick={() => {
+            navigate(`/albums/${id}`);
+          }}>
           <p className="name">Yeux plus gros que le monde</p>
           <div className="sousDesc">
             <p className="author">Maitre gims</p>
@@ -22,7 +30,11 @@ function Block({type}) {
     <div className="blockContainer">
       <div className="block">
         <img src={image} alt="" />
-        <div className="desc">
+        <div
+          className="desc"
+          onClick={() => {
+            navigate(`/artistes/${id}`);
+          }}>
           <p className="name">Yeux plus gros que le monde</p>
         </div>
       </div>
@@ -32,6 +44,15 @@ function Block({type}) {
       <div className="block">
         <img src={musique} alt="" />
         <div className="desc">
+          <div className="audioControl">
+            <FontAwesomeIcon
+              icon={faPlayCircle}
+              className="icon"
+              onClick={() => {
+                console.log('play');
+              }}
+            />
+          </div>
           <p className="name">Yeux plus gros que le monde</p>
           <div className="sousDesc">
             <p className="author">Maitre gims</p>
@@ -43,7 +64,11 @@ function Block({type}) {
     <div className="blockContainer">
       <div className="block">
         <img src={playlist} alt="" />
-        <div className="desc">
+        <div
+          className="desc"
+          onClick={() => {
+            navigate(`/playlists/${id}`);
+          }}>
           <p className="name">Yeux plus gros que le monde</p>
         </div>
       </div>

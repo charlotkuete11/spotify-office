@@ -17,13 +17,14 @@ function Artistes() {
         </div>
 
         <div className="body">
-          <Block type="artiste" />
-          <Block type="artiste" />
-          <Block type="artiste" />
-          <Block type="artiste" />
-          <Block type="artiste" />
-          <Block type="artiste" />
-          <Block type="artiste" />
+          <Block type="artiste" id="1" />
+          <Block type="artiste" id="2" />
+          <Block type="artiste" id="3" />
+          <Block type="artiste" id="4" />
+          <Block type="artiste" id="5" />
+          <Block type="artiste" id="6" />
+          <Block type="artiste" id="7" />
+          <Block type="artiste" id="8" />
         </div>
       </div>
     </div>

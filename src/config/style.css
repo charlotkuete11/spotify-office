@@ -1,5 +1,6 @@
 .SiteContainer .parent{
-  background: rgb(179, 181, 182);
+  /* background: rgb(179, 181, 182); */
+  background: linear-gradient(to bottom right, rgb(179, 181, 182), royalblue);
   display:flex;
   align-items: stretch;
   height:100vh;
