@@ -7,7 +7,7 @@ import {faPause, faPlay, faRemove} from '@fortawesome/free-solid-svg-icons';
 import image from '../../../assets/album.jpg';
 import axios from 'axios';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://ec2-15-188-52-96.eu-west-3.compute.amazonaws.com/api';
 
 function ArtisteDetails() {
   const navigate = useNavigate();

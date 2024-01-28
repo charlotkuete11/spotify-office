@@ -8,7 +8,7 @@ import Modal from '../../components/modal';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://ec2-15-188-52-96.eu-west-3.compute.amazonaws.com/api';
 
 function Albums() {
   const [dataBackUp, setDataBackUp] = useState(null);

@@ -8,7 +8,7 @@ import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://ec2-15-188-52-96.eu-west-3.compute.amazonaws.com/api';
 
 function Album() {
   const [file, setFile] = useState(null);

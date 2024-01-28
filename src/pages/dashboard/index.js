@@ -9,7 +9,7 @@ import {faBook, faEarListen, faMusic} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://ec2-15-188-52-96.eu-west-3.compute.amazonaws.com/api';
 
 function Dashboard() {
   const dispatch = useDispatch();

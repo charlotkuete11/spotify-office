@@ -8,7 +8,7 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Modal from '../../components/modal';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = 'http://ec2-15-188-52-96.eu-west-3.compute.amazonaws.com/api';
 
 function Artistes() {
   const [dataBackUp, setDataBackUp] = useState(null);
