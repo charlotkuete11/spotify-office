@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import './index.css';
 import {changeLoadValue} from '../../services/redux/actions';
 
-function LoadingComponent({page}) {
+function LoadingComponent() {
   const dispatch = useDispatch();
 
   useEffect(() => {

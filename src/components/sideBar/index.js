@@ -45,10 +45,10 @@ function SideBar() {
           <FontAwesomeIcon icon={faBook} />
           <span>Albums</span>
         </li>
-        <li onClick={() => handleNavigation('/playlists')}>
+        {/* <li onClick={() => handleNavigation('/playlists')}>
           <FontAwesomeIcon icon={faList} />
           <span>Playlists</span>
-        </li>
+        </li> */}
       </ul>
 
       <div className="copyright">@Copyright (c) 2024 all rights reserved</div>

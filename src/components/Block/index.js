@@ -1,14 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.css';
 import image from '../../assets/album.jpg';
 import playlist from '../../assets/playlist.jpeg';
 import musique from '../../assets/musique.jpeg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import {faPauseCircle, faPlayCircle} from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from 'react-router';
+import axios from 'axios';
 
-function Block({type, id}) {
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
+function Block({type, id, data}) {
   const navigate = useNavigate();
+  const [albumAuthor, setAlbumAuthor] = useState(null);
+
+  useEffect(() => {
+    if (type === 'album') {
+      const artisteId = data.artistes[0];
+      // Effectuez une requête GET vers l'API
+      axios
+        .get(`${baseUrl}/artistes/${artisteId}`)
+        .then(response => {
+          // Mettez à jour l'état avec les données de l'API
+          setAlbumAuthor(response.data.name);
+        })
+        .catch(error => {
+          console.error(
+            "Erreur lors de la récupération des données de l'API:",
+            error,
+          );
+        });
+    }
+  }, []);
+
   return type === 'album' ? (
     <div className="blockContainer">
       <div className="block">
@@ -16,12 +40,12 @@ function Block({type, id}) {
         <div
           className="desc"
           onClick={() => {
-            navigate(`/albums/${id}`);
+            navigate(`/albums/${data._id}`);
           }}>
-          <p className="name">Yeux plus gros que le monde</p>
+          <p className="name">{data.title}</p>
           <div className="sousDesc">
-            <p className="author">Maitre gims</p>
-            <p className="anneeSortie">2019</p>
+            <p className="author">{albumAuthor}</p>
+            {/* <p className="anneeSortie">2019</p> */}
           </div>
         </div>
       </div>
@@ -33,9 +57,9 @@ function Block({type, id}) {
         <div
           className="desc"
           onClick={() => {
-            navigate(`/artistes/${id}`);
+            navigate(`/artistes/${data._id}`);
           }}>
-          <p className="name">Yeux plus gros que le monde</p>
+          <p className="name">{data.name}</p>
         </div>
       </div>
     </div>
@@ -46,14 +70,11 @@ function Block({type, id}) {
         <div className="desc">
           <div className="audioControl">
             <FontAwesomeIcon
-              icon={faPlayCircle}
+              icon={data.isPlaying ? faPauseCircle : faPlayCircle}
               className="icon"
-              onClick={() => {
-                console.log('play');
-              }}
             />
           </div>
-          <p className="name">Yeux plus gros que le monde</p>
+          <p className="name">{data.title}</p>
           <div className="sousDesc">
             <p className="author">Maitre gims</p>
           </div>

@@ -1,26 +1,101 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import '../globalPageStyle.css';
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import Block from '../../components/Block';
-import {useState} from 'react';
 import Modal from '../../components/modal';
-import {useNavigate} from 'react-router';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 function Albums() {
-  const navigate = useNavigate();
+  const [dataBackUp, setDataBackUp] = useState(null);
   const [formValue, setFormValue] = useState({
-    titre: '',
-    artiste: '',
-    dateSortie: '',
+    title: '',
+    artist: '',
   });
   const [isModalOpen, setModalOpen] = useState(false);
+  const [data, setData] = useState(null);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [artisteName, setArtisteName] = useState(null);
+  const callRef = useRef(null);
+
+  useEffect(() => {
+    // Effectuez une requête GET vers l'API
+    axios
+      .get(`${baseUrl}/albums`)
+      .then(response => {
+        console.log(response.data);
+        // Mettez à jour l'état avec les données de l'API
+        setData(response.data);
+        setDataBackUp(response.data);
+      })
+      .catch(error => {
+        console.error(
+          "Erreur lors de la récupération des données de l'API:",
+          error,
+        );
+      });
+
+    //Effectuer une requete GET vers l'API pour recuperer les noms des artistes
+    axios
+      .get(`${baseUrl}/artistes?fields=name`)
+      .then(response => {
+        console.log(response.data);
+        // Sort the array alphabetically based on the 'name' property
+        const sortedData = response.data.slice().sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+
+        setArtisteName(sortedData);
+      })
+      .catch(error => {
+        console.error(
+          "Erreur lors de la récupération des données de l'API:",
+          error,
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    if (input.length > 0) {
+      setIsLoading(true);
+      clearTimeout(callRef.current);
+      callRef.current = setTimeout(() => {
+        axios
+          .get(`${baseUrl}/albums`)
+          .then(response => {
+            setIsLoading(false);
+            const filteredData = response.data.filter(elmt =>
+              elmt.title.toLowerCase().includes(input.toLowerCase()),
+            );
+            setData(filteredData);
+          })
+          .catch(err => {
+            setIsLoading(false);
+            console.error(
+              "Erreur lors de la récupération des données de l'API pour la recherche",
+              err,
+            );
+          });
+      }, 300);
+    } else {
+      setData(dataBackUp);
+    }
+  }, [input]);
 
   const handleSelectChange = event => {
     setFormValue(prev => ({
       ...prev,
-      artiste: event.target.value,
+      artist: event.target.value,
     }));
   };
 
@@ -34,29 +109,21 @@ function Albums() {
 
   const handleSubmit = event => {
     event.preventDefault();
-
-    // Créer un nouvel objet FormData
-    const formData = new FormData();
-
-    // Ajouter le fichier à FormData
-    formData.append('data', formValue);
-
-    // Envoyer formData au serveur ou effectuer d'autres opérations
-    // fetch('/api/upload', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
+    axios
+      .post(`${baseUrl}/albums`, formValue)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error("Erreur lors de la creation d'un album", error);
+      });
 
     // Réinitialiser le champ de fichier après l'envoi
     setFormValue({
-      titre: '',
-      artiste: '',
-      dateSortie: '',
+      title: '',
+      artist: '',
     });
-  };
-
-  const handleNavigation = () => {
-    navigate('albums/1');
+    closeModal();
   };
   return (
     <div className="pageContainer">
@@ -67,6 +134,8 @@ function Albums() {
               type="search"
               className="input"
               placeholder="Votre recherce ici"
+              value={input}
+              onChange={e => setInput(e.target.value)}
             />
           </div>
           <div className="addSection">
@@ -78,15 +147,11 @@ function Albums() {
         </div>
 
         <div className="body">
-          <Block type="album" id="1" />
-          <Block type="album" id="2" />
-          <Block type="album" id="3" />
-          <Block type="album" id="4" />
-          <Block type="album" id="5" />
-          <Block type="album" id="6" />
-          <Block type="album" id="7" />
-          <Block type="album" id="8" />
-          <Block type="album" id="9" />
+          {data && isLoading !== true ? (
+            data.map(album => <Block type="album" data={album} />)
+          ) : (
+            <p>Chargement...</p>
+          )}
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} title="Ajouter un album">
@@ -95,11 +160,11 @@ function Albums() {
             <input
               type="text"
               placeholder="Titre"
-              value={formValue.titre}
+              value={formValue.title}
               onChange={e => {
                 setFormValue(prev => ({
                   ...prev,
-                  titre: e.target.value,
+                  title: e.target.value,
                 }));
               }}
             />
@@ -111,25 +176,19 @@ function Albums() {
                 handleSelectChange(e);
               }}>
               <option value="">Choisir un artiste</option>
-              <option value="maitre gims">Maitre gims</option>
-              <option value="Damso">Damso</option>
+              {artisteName ? (
+                artisteName.map((item, index) => (
+                  <option value={item.name} key={index}>
+                    {item.name}
+                  </option>
+                ))
+              ) : (
+                <option>chargement...</option>
+              )}
             </select>
           </div>
           <div className="formController">
-            <input
-              type="number"
-              placeholder="Date de sortie"
-              value={formValue.dateSortie}
-              onChange={e => {
-                setFormValue(prev => ({
-                  ...prev,
-                  dateSortie: e.target.value,
-                }));
-              }}
-            />
-          </div>
-          <div className="formController">
-            <button type="button">Ajouter</button>
+            <button type="submit">Ajouter</button>
           </div>
         </form>
       </Modal>

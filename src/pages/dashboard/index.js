@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../globalPageStyle.css';
 import './dashboard.css';
@@ -7,12 +7,26 @@ import {useEffect} from 'react';
 import {changeNavigateRef} from '../../services/redux/actions';
 import {faBook, faEarListen, faMusic} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [totalAlbum, setTotalAlbum] = useState(null);
+  const [totalMorceaux, setTotalMorceaux] = useState(null);
+
   useEffect(() => {
     dispatch(changeNavigateRef(navigate));
+
+    axios.get(`${baseUrl}/albums`).then(res => {
+      setTotalAlbum(res.data.length);
+    });
+
+    axios.get(`${baseUrl}/audios`).then(res => {
+      setTotalMorceaux(res.data.length);
+    });
   }, []);
 
   return (
@@ -69,14 +83,14 @@ function Dashboard() {
               <FontAwesomeIcon icon={faEarListen} className="icon" />
               <div>
                 <p>Nombre d'ecoute</p>
-                <p>1000000</p>
+                <p>94000</p>
               </div>
             </div>
             <div className="innerBlock">
               <FontAwesomeIcon icon={faBook} className="icon" />
               <div>
                 <p>Nombre d'album</p>
-                <p>100</p>
+                <p>{totalAlbum}</p>
               </div>
             </div>
           </div>
@@ -86,7 +100,7 @@ function Dashboard() {
             <FontAwesomeIcon icon={faMusic} className="icon" />
             <div>
               <p>Nombre de morceau</p>
-              <p>1000000</p>
+              <p>{totalMorceaux}</p>
             </div>
           </div>
         </div>
