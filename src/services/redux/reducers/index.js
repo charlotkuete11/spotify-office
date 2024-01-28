@@ -12,12 +12,14 @@ const loadedReducer = (state = initialState, action) => {
         ...state,
         isLoaded: action.payload,
       };
+      // eslint-disable-next-line no-unreachable
       break;
     case 'NAVIGATEREF':
       return {
         ...state,
         navigateRef: action.payload,
       };
+      // eslint-disable-next-line no-unreachable
       break;
     default:
       return state;
