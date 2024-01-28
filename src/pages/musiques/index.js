@@ -1,6 +1,5 @@
 import React, {useEffect, useRef} from 'react';
 import '../globalPageStyle.css';
-import Block from '../../components/Block';
 import musique from '../../assets/musique.jpeg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
@@ -93,7 +92,7 @@ function Musiques() {
     } else {
       setAudios(dataBackUp);
     }
-  }, [input]);
+  }, [dataBackUp, input]);
 
   const openModal = () => {
     setModalOpen(true);

@@ -90,7 +90,7 @@ function Albums() {
     } else {
       setData(dataBackUp);
     }
-  }, [input]);
+  }, [dataBackUp, input]);
 
   const handleSelectChange = event => {
     setFormValue(prev => ({

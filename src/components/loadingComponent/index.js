@@ -11,7 +11,7 @@ function LoadingComponent() {
     setTimeout(() => {
       dispatch(changeLoadValue(true));
     }, 2500);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="loadingContainer">

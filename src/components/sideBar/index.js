@@ -1,11 +1,9 @@
 import React from 'react';
-import {navigateRef} from '../../config/navigateRef';
 import logo from '../../assets/Spotify_Logo.png';
 import './index.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faBook,
-  faList,
   faMusic,
   faTachometerAlt,
   faUser,

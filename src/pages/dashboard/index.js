@@ -27,7 +27,7 @@ function Dashboard() {
     axios.get(`${baseUrl}/audios`).then(res => {
       setTotalMorceaux(res.data.length);
     });
-  }, []);
+  }, [dispatch, navigate]);
 
   return (
     <div className="pageContainer">

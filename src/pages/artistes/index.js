@@ -63,7 +63,7 @@ function Artistes() {
     } else {
       setData(dataBackUp);
     }
-  }, [input]);
+  }, [dataBackUp, input]);
 
   const openModal = () => {
     setModalOpen(true);
