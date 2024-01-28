@@ -28,7 +28,7 @@ function Albums() {
     axios
       .get(`${baseUrl}/albums`)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         // Mettez à jour l'état avec les données de l'API
         setData(response.data);
         setDataBackUp(response.data);
@@ -44,7 +44,7 @@ function Albums() {
     axios
       .get(`${baseUrl}/artistes?fields=name`)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         // Sort the array alphabetically based on the 'name' property
         const sortedData = response.data.slice().sort((a, b) => {
           const nameA = a.name.toLowerCase();

@@ -42,7 +42,7 @@ function Musiques() {
           arrayMusique.push(audio);
         });
 
-        console.log('audios', arrayMusique);
+        // console.log('audios', arrayMusique);
         setAudios(response.data);
         setDataBackUp(response.data);
       })
@@ -57,7 +57,7 @@ function Musiques() {
     axios
       .get(`${baseUrl}/artistes?fields=name,_id`)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setArtisteName(response.data);
       })
       .catch(error => {
@@ -135,7 +135,7 @@ function Musiques() {
     // Ajouter le fichier à FormData
     formData.append('file', file);
 
-    console.log(formData);
+    // console.log(formData);
 
     // Envoyer formData au serveur ou effectuer d'autres opérations
     // fetch('/api/upload', {

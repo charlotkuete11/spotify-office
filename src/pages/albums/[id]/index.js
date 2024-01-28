@@ -27,7 +27,7 @@ function Album() {
       .then(response => {
         setTitle(response.data.title);
         const audioArray = response.data.audios;
-        console.log('first', response.data);
+        // console.log('first', response.data);
 
         axios
           .get(`${baseUrl}/artistes/${response.data.artistes[0]}`)
@@ -53,7 +53,7 @@ function Album() {
               arrayMusique.push(audio);
             });
             setMusiques(arrayMusique);
-            console.log('musiques', musiques);
+            // console.log('musiques', musiques);
           })
           .catch(error => {
             console.error(
@@ -68,7 +68,7 @@ function Album() {
           error,
         );
       });
-  }, []);
+  }, [id, musiques]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -110,7 +110,7 @@ function Album() {
     // Ajouter le fichier à FormData
     formData.append('file', file);
 
-    console.log(formData);
+    // console.log(formData);
 
     // Envoyer formData au serveur ou effectuer d'autres opérations
     // fetch('/api/upload', {

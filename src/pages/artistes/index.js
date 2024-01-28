@@ -121,7 +121,10 @@ function Artistes() {
           )}
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} title="Ajouter un album">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Ajouter un artiste">
         <form onSubmit={handleSubmit}>
           <div className="formController">
             <input

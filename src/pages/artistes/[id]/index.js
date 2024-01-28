@@ -3,12 +3,7 @@ import '../../globalPageStyle.css';
 import {useParams} from 'react-router';
 import {useNavigate} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faAdd,
-  faPause,
-  faPlay,
-  faRemove,
-} from '@fortawesome/free-solid-svg-icons';
+import {faPause, faPlay, faRemove} from '@fortawesome/free-solid-svg-icons';
 import image from '../../../assets/album.jpg';
 import axios from 'axios';
 
@@ -50,7 +45,7 @@ function ArtisteDetails() {
               arrayMusique.push(audio);
             });
             setMusiques(arrayMusique);
-            console.log('musiques', arrayMusique);
+            // console.log('musiques', arrayMusique);
           })
           .catch(error => {
             console.error(
@@ -65,7 +60,7 @@ function ArtisteDetails() {
           error,
         );
       });
-  }, []);
+  }, [id]);
 
   // Function to toggle the isPlaying property of a specific object by id
   const toggleIsPlaying = (id, urlAudio = null) => {

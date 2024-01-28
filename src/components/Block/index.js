@@ -31,7 +31,7 @@ function Block({type, id, data}) {
           );
         });
     }
-  }, []);
+  }, [data.artistes, type]);
 
   return type === 'album' ? (
     <div className="blockContainer">
